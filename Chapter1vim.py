@@ -1,4 +1,6 @@
 import collections
+from random import choice
+from vector2d import Vector
 
 Card = collections.namedtuple('Card', ['rank', 'suit'])
 
@@ -16,3 +18,37 @@ class FrenchDeck:
     def __getitem__(self, position):
         return self._cards[position]
 
+beer_card = Card('7', 'diamonds')
+print(beer_card)
+
+deck = FrenchDeck()
+print(len(deck))
+
+#print(deck[0])
+#print(deck[-1])
+
+print(choice(deck))
+
+
+#for card in deck: # doctest: +ELLIPSIS
+#    print(card)
+
+#for card in reversed(deck):
+#    print(card)
+
+print(Card('Q', 'hearts') in deck)
+print(Card('7', 'beasts') in deck)
+
+suit_values = dict(spades=3, hearts=2, diamonds=1, clubs=0)
+
+def spades_high(card):
+    rank_value = FrenchDeck.ranks.index(card.rank)
+    return rank_value * len(suit_values) + suit_values[card.suit]
+
+#for card in sorted(deck, key=spades_high):
+    #print(card)
+
+
+v1 = Vector(2, 4)
+v2 = Vector(2, 1)
+print(v1 + v2)
